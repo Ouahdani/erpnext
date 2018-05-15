@@ -647,7 +647,9 @@ class SalesInvoice(SellingController):
 			# Didnot use base_grand_total to book rounding loss gle
 			grand_total_in_company_currency = flt(grand_total * self.conversion_rate,
 				self.precision("grand_total"))
-
+			prefix1 = self.return_against if cint(self.is_return) else self.name
+			prefix = prefix1[:2]
+			code_jour = frappe.db.get_value("Series", prefix, "code_jour", order_by = "name")	
 			gl_entries.append(
 				self.get_gl_dict({
 					"account": self.debit_to,
@@ -658,7 +660,7 @@ class SalesInvoice(SellingController):
 					"debit_in_account_currency": grand_total_in_company_currency \
 						if self.party_account_currency==self.company_currency else grand_total,
 					"against_voucher": self.return_against if cint(self.is_return) else self.name,
-					"code_jour": "VENTES",
+					"code_jour": code_jour,
 					"against_voucher_type": self.doctype
 				}, self.party_account_currency)
 			)
@@ -667,6 +669,9 @@ class SalesInvoice(SellingController):
 		for tax in self.get("taxes"):
 			if flt(tax.base_tax_amount_after_discount_amount):
 				account_currency = get_account_currency(tax.account_head)
+				prefix1 = self.return_against if cint(self.is_return) else self.name
+				prefix = prefix1[:2]
+				code_jour = frappe.db.get_value("Series", prefix, "code_jour", order_by = "name")	
 				gl_entries.append(
 					self.get_gl_dict({
 						"account": tax.account_head,
@@ -674,6 +679,7 @@ class SalesInvoice(SellingController):
 						"credit": flt(tax.base_tax_amount_after_discount_amount),
 						"credit_in_account_currency": flt(tax.base_tax_amount_after_discount_amount) \
 							if account_currency==self.company_currency else flt(tax.tax_amount_after_discount_amount),
+						"code_jour": code_jour,	
 						"cost_center": tax.cost_center
 					}, account_currency)
 				)
@@ -694,6 +700,9 @@ class SalesInvoice(SellingController):
 					asset.set_status("Sold" if self.docstatus==1 else None)
 				else:
 					account_currency = get_account_currency(item.income_account)
+					prefix1 = self.return_against if cint(self.is_return) else self.name
+					prefix = prefix1[:2]
+					code_jour = frappe.db.get_value("Series", prefix, "code_jour", order_by = "name")						
 					gl_entries.append(
 						self.get_gl_dict({
 							"account": item.income_account,
@@ -701,6 +710,7 @@ class SalesInvoice(SellingController):
 							"credit": item.base_net_amount,
 							"credit_in_account_currency": item.base_net_amount \
 								if account_currency==self.company_currency else item.net_amount,
+							"code_jour": code_jour,	
 							"cost_center": item.cost_center
 						}, account_currency)
 					)
