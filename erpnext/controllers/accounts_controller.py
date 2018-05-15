@@ -292,6 +292,7 @@ class AccountsController(TransactionBase):
 			'is_opening': self.get("is_opening") or "No",
 			'party_type': None,
 			'party': None,
+			'code_jour': None,
 			'project': self.get("project")
 		})
 		gl_dict.update(args)
