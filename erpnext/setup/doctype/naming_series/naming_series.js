@@ -38,11 +38,12 @@ frappe.ui.form.on("Naming Series", {
 			method: "get_current",
 			doc: frm.doc,
 			callback: function(r) {
-				frm.refresh_field("current_value");
+				refresh_field("current_value");
+				refresh_field("code_jour");
 			}
 		});
 	},
-
+	
 	update: function(frm) {
 		frappe.call({
 			method: "update_series",

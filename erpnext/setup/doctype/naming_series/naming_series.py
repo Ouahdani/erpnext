@@ -143,7 +143,9 @@ class NamingSeries(Document):
 			prefix = self.parse_naming_series()
 			self.current_value = frappe.db.get_value("Series",
 				prefix, "current", order_by = "name")
-
+			self.code_jour = frappe.db.get_value("Series",
+				prefix, "code_jour", order_by = "name")	
+	
 	def insert_series(self, series):
 		"""insert series if missing"""
 		if not frappe.db.get_value('Series', series, 'name', order_by="name"):
@@ -155,6 +157,8 @@ class NamingSeries(Document):
 			self.insert_series(prefix)
 			frappe.db.sql("update `tabSeries` set current = %s where name = %s",
 				(self.current_value, prefix))
+			frappe.db.sql("update `tabSeries` set code_jour = %s where name = %s",
+				(self.code_jour, prefix))	
 			msgprint(_("Series Updated Successfully"))
 		else:
 			msgprint(_("Please select prefix first"))
