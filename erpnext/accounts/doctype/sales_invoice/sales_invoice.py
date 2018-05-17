@@ -702,10 +702,11 @@ class SalesInvoice(SellingController):
 					account_currency = get_account_currency(item.income_account)
 					prefix1 = self.return_against if cint(self.is_return) else self.name
 					prefix = prefix1[:2]
-					code_jour = frappe.db.get_value("Series", prefix, "code_jour", order_by = "name")						
+					code_jour = frappe.db.get_value("Series", prefix, "code_jour", order_by = "name")	
+					cat_cpt = frappe.db.get_value("Customer", self.customer, "num_cc", order_by = "name")	
 					gl_entries.append(
 						self.get_gl_dict({
-							"account": item.income_account,
+							"account": item.cession_account if cat_cpt == "Cession" else item.income_account,
 							"against": self.customer,
 							"credit": item.base_net_amount,
 							"credit_in_account_currency": item.base_net_amount \

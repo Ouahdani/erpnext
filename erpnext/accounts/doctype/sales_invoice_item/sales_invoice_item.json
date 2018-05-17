@@ -40,6 +40,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -72,6 +73,7 @@
    "reqd": 0,
    "search_index": 1,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -100,6 +102,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -131,6 +134,7 @@
    "reqd": 1,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -160,6 +164,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -190,6 +195,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -222,6 +228,7 @@
    "reqd": 1,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0,
    "width": "200px"
   },
@@ -252,6 +259,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -283,6 +291,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -313,6 +322,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -342,6 +352,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -373,6 +384,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -403,6 +415,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -431,6 +444,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -462,6 +476,7 @@
    "reqd": 1,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -492,6 +507,7 @@
    "reqd": 1,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -522,6 +538,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -551,6 +568,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -583,6 +601,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -615,6 +634,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -645,6 +665,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -677,6 +698,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -708,6 +730,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -740,6 +763,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -769,6 +793,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -802,6 +827,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -834,6 +860,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -862,6 +889,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -894,6 +922,7 @@
    "reqd": 1,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -926,6 +955,7 @@
    "reqd": 1,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -954,6 +984,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -986,6 +1017,7 @@
    "reqd": 1,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1018,6 +1050,7 @@
    "reqd": 1,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1048,6 +1081,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1077,6 +1111,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1108,6 +1143,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1139,6 +1175,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1168,6 +1205,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1199,6 +1237,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1230,6 +1269,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1261,6 +1301,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1291,6 +1332,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1320,6 +1362,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1353,8 +1396,41 @@
    "reqd": 1,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0,
    "width": "120px"
+  },
+  {
+   "allow_bulk_edit": 0,
+   "allow_on_submit": 0,
+   "bold": 0,
+   "collapsible": 0,
+   "columns": 0,
+   "fieldname": "cession_account",
+   "fieldtype": "Link",
+   "hidden": 0,
+   "ignore_user_permissions": 0,
+   "ignore_xss_filter": 0,
+   "in_filter": 0,
+   "in_global_search": 0,
+   "in_list_view": 0,
+   "in_standard_filter": 0,
+   "label": "Cession Account",
+   "length": 0,
+   "no_copy": 0,
+   "options": "Account",
+   "permlevel": 0,
+   "precision": "",
+   "print_hide": 1,
+   "print_hide_if_no_value": 0,
+   "read_only": 0,
+   "remember_last_selected_value": 0,
+   "report_hide": 0,
+   "reqd": 0,
+   "search_index": 0,
+   "set_only_once": 0,
+   "translatable": 0,
+   "unique": 0
   },
   {
    "allow_bulk_edit": 0,
@@ -1384,6 +1460,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0,
    "width": "120px"
   },
@@ -1413,6 +1490,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1447,6 +1525,7 @@
    "reqd": 1,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0,
    "width": "120px"
   },
@@ -1478,6 +1557,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1509,6 +1589,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1539,6 +1620,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1568,6 +1650,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1599,6 +1682,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1630,6 +1714,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1662,6 +1747,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1693,6 +1779,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1725,6 +1812,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1755,6 +1843,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1783,6 +1872,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1813,6 +1903,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1844,6 +1935,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1877,6 +1969,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1908,6 +2001,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1939,6 +2033,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -1970,6 +2065,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0,
    "width": "150px"
   },
@@ -2002,6 +2098,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -2032,6 +2129,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -2064,6 +2162,7 @@
    "reqd": 0,
    "search_index": 1,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -2095,6 +2194,7 @@
    "reqd": 0,
    "search_index": 1,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -2124,6 +2224,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -2156,6 +2257,7 @@
    "reqd": 0,
    "search_index": 1,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -2187,6 +2289,7 @@
    "reqd": 0,
    "search_index": 1,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -2218,6 +2321,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -2248,6 +2352,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -2279,6 +2384,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -2308,6 +2414,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   },
   {
@@ -2337,6 +2444,7 @@
    "reqd": 0,
    "search_index": 0,
    "set_only_once": 0,
+   "translatable": 0,
    "unique": 0
   }
  ],
@@ -2350,7 +2458,7 @@
  "issingle": 0,
  "istable": 1,
  "max_attachments": 0,
- "modified": "2017-11-29 13:42:59.003120",
+ "modified": "2018-05-16 14:41:10.756620",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Sales Invoice Item",

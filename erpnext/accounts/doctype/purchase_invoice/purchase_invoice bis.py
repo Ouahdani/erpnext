@@ -396,7 +396,7 @@ class PurchaseInvoice(BuyingController):
 			prefix1 = self.return_against if cint(self.is_return) else self.name
 			prefix = prefix1[:2]
 			code_jour = frappe.db.get_value("Series", prefix, "code_jour", order_by = "name")		
-			cat_cpt = frappe.db.get_value("Supplier", self.supplier, "num_cc", order_by = "name")			
+			cat_cpt = frappe.db.get_value("Supplier", self.customer, "num_cc", order_by = "name")			
 			if flt(item.base_net_amount):
 				account_currency = get_account_currency(item.expense_account)
 
@@ -409,7 +409,7 @@ class PurchaseInvoice(BuyingController):
 
 					gl_entries.append(
 						self.get_gl_dict({
-							"account": item.transfert_account if cat_cpt == "Cession" else item.expense_account,
+							"account": item.transfert_account if cat_cpt == "CI" else item.expense_account,
 							"against": self.supplier,
 							"debit": warehouse_debit_amount,
 							"remarks": self.get("remarks") or _("Accounting Entry for Stock"),
@@ -423,7 +423,7 @@ class PurchaseInvoice(BuyingController):
 					if flt(item.landed_cost_voucher_amount):
 						gl_entries.append(self.get_gl_dict({
 							"account": expenses_included_in_valuation,
-							"against": item.transfert_account if cat_cpt == "Cession" else item.expense_account,
+							"against": item.expense_account,
 							"cost_center": item.cost_center,
 							"remarks": self.get("remarks") or _("Accounting Entry for Stock"),
 							"credit": flt(item.landed_cost_voucher_amount),
@@ -439,7 +439,7 @@ class PurchaseInvoice(BuyingController):
 								.format(self.supplier_warehouse))
 						gl_entries.append(self.get_gl_dict({
 							"account": supplier_warehouse_account,
-							"against": item.transfert_account if cat_cpt == "Cession" else item.expense_account,
+							"against": item.transfert_account if cat_cpt == "CI" else item.expense_account,
 							"cost_center": item.cost_center,
 							"remarks": self.get("remarks") or _("Accounting Entry for Stock"),
 							"code_jour": code_jour,
@@ -448,7 +448,7 @@ class PurchaseInvoice(BuyingController):
 				else:
 					gl_entries.append(
 						self.get_gl_dict({
-							"account": item.transfert_account if cat_cpt == "Cession" else item.expense_account,
+							"account": item.transfert_account if cat_cpt == "CI" else item.expense_account,
 							"against": self.supplier,
 							"debit": flt(item.base_net_amount, item.precision("base_net_amount")),
 							"debit_in_account_currency": (flt(item.base_net_amount,

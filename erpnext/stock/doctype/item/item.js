@@ -207,11 +207,23 @@ $.extend(erpnext.item, {
 			}
 		}
 
+		frm.fields_dict['transfert_account'].get_query = function(doc) {
+			return {
+				query: "erpnext.controllers.queries.get_expense_account"
+			}
+		}			
+		
 		frm.fields_dict['income_account'].get_query = function(doc) {
 			return {
 				query: "erpnext.controllers.queries.get_income_account"
 			}
 		}
+		
+		frm.fields_dict['cession_account'].get_query = function(doc) {
+			return {
+				query: "erpnext.controllers.queries.get_income_account"
+			}
+		}	
 
 		frm.fields_dict['buying_cost_center'].get_query = function(doc) {
 			return {
@@ -659,6 +671,8 @@ frappe.ui.form.on("Item", {
 	setup: function(frm) {
 		// #13478 : Default Accounts in Item from Item Group
 		cur_frm.add_fetch('item_group', 'default_expense_account', 'expense_account');
+		cur_frm.add_fetch('item_group', 'default_transfert_account', 'transfert_account');		
 		cur_frm.add_fetch('item_group', 'default_income_account', 'income_account');
+		cur_frm.add_fetch('item_group', 'default_cession_account', 'cession_account');
 	},
 });

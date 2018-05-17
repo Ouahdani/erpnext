@@ -157,7 +157,8 @@ def get_tax_template(posting_date, args):
 		for key in args:
 			if rule.get(key): rule.no_of_keys_matched += 1
 
-	rule = sorted(tax_rule, lambda b, a: cmp(a.no_of_keys_matched, b.no_of_keys_matched) or cmp(a.priority, b.priority))[0]
+#   rule = sorted(tax_rule, lambda b, a: cmp(a.no_of_keys_matched, b.no_of_keys_matched) or cmp(a.priority, b.priority))[0]
+	rule = sorted(tax_rule, key=attrgetter('no_of_keys_matched', 'priority'))[0]
 
 	tax_template = rule.sales_tax_template or rule.purchase_tax_template
 	doctype = "{0} Taxes and Charges Template".format(rule.tax_type)
@@ -173,3 +174,20 @@ def get_customer_group_condition(customer_group):
 	if customer_groups:
 		condition = ",".join(['%s'] * len(customer_groups))%(tuple(customer_groups))
 	return condition
+	
+def attrgetter(*items):
+    if any(not isinstance(item, str) for item in items):
+        raise TypeError('attribute name must be a string')
+    if len(items) == 1:
+        attr = items[0]
+        def g(obj):
+            return resolve_attr(obj, attr)
+    else:
+        def g(obj):
+            return tuple(resolve_attr(obj, attr) for attr in items)
+    return g
+
+def resolve_attr(obj, attr):
+    for name in attr.split("."):
+        obj = getattr(obj, name)
+    return obj

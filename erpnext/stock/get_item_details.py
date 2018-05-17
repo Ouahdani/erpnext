@@ -225,7 +225,9 @@ def get_basic_details(args, item):
 		"image": cstr(item.image).strip(),
 		"warehouse": warehouse,
 		"income_account": get_default_income_account(args, item),
+		"cession_account": get_default_cession_account(args, item),
 		"expense_account": get_default_expense_account(args, item),
+		"transfert_account": get_default_transfert_account(args, item),
 		"cost_center": get_default_cost_center(args, item),
 		'has_serial_no': item.has_serial_no,
 		'has_batch_no': item.has_batch_no,
@@ -271,7 +273,9 @@ def get_basic_details(args, item):
 	# if default specified in item is for another company, fetch from company
 	for d in [
 		["Account", "income_account", "default_income_account"],
+		["Account", "cession_account", "default_cession_account"],
 		["Account", "expense_account", "default_expense_account"],
+		["Account", "transfert_account", "default_trasfert_account"],		
 		["Cost Center", "cost_center", "cost_center"],
 		["Warehouse", "warehouse", ""]]:
 			company = frappe.db.get_value(d[0], out.get(d[1]), "company")
@@ -288,11 +292,21 @@ def get_default_income_account(args, item):
 	return (item.income_account
 		or args.income_account
 		or frappe.db.get_value("Item Group", item.item_group, "default_income_account"))
+		
+def get_default_cession_account(args, item):
+	return (item.cession_account
+		or args.cession_account
+		or frappe.db.get_value("Item Group", item.item_group, "default_cession_account"))		
 
 def get_default_expense_account(args, item):
 	return (item.expense_account
 		or args.expense_account
 		or frappe.db.get_value("Item Group", item.item_group, "default_expense_account"))
+
+def get_default_transfert_account(args, item):
+	return (item.transfert_account
+		or args.transfert_account
+		or frappe.db.get_value("Item Group", item.item_group, "default_transfert_account"))		
 
 def get_default_cost_center(args, item):
 	return (frappe.db.get_value("Project", args.get("project"), "cost_center")
@@ -421,7 +435,7 @@ def get_pos_profile_item_details(company, args, pos_profile=None, update_data=Fa
 		pos_profile = get_pos_profile(company, args.get('pos_profile'))
 
 	if pos_profile:
-		for fieldname in ("income_account", "cost_center", "warehouse", "expense_account"):
+		for fieldname in ("income_account", "cession_account", "cost_center", "warehouse", "expense_account", "transfert_account"):
 			if (not args.get(fieldname) or update_data) and pos_profile.get(fieldname):
 				res[fieldname] = pos_profile.get(fieldname)
 
