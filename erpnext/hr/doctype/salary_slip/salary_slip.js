@@ -79,6 +79,7 @@ frappe.ui.form.on("Salary Slip", {
 	},
 
 	employee: function(frm, dt, dn) {
+	    console.trace(frm.doc);
 		get_emp_and_leave_details(frm.doc, dt, dn);
 	},
 
@@ -141,7 +142,7 @@ cur_frm.cscript.leave_without_pay = function(doc,dt,dn){
 }
 
 var calculate_all = function(doc, dt, dn) {
-	calculate_earning_total(doc, dt, dn);
+ 	calculate_earning_total(doc, dt, dn);
 	calculate_ded_total(doc, dt, dn);
 	calculate_net_pay(doc, dt, dn);
 }

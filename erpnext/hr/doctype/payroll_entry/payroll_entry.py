@@ -87,6 +87,8 @@ class PayrollEntry(Document):
 		"""
 			Creates salary slip for selected employees if already not created
 		"""
+		
+
 		self.check_permission('write')
 		self.created = 1;
 		emp_list = self.get_emp_list()
@@ -106,8 +108,8 @@ class PayrollEntry(Document):
 						"doctype": "Salary Slip",
 						"salary_slip_based_on_timesheet": self.salary_slip_based_on_timesheet,
 						"payroll_frequency": self.payroll_frequency,
-						"start_date": self.start_date,
-						"end_date": self.end_date,
+						"start_date": getdate(self.start_date),
+						"end_date": getdate(self.end_date),
 						"employee": emp['employee'],
 						"employee_name": frappe.get_value("Employee", {"name":emp['employee']}, "employee_name"),
 						"company": self.company,
@@ -183,12 +185,11 @@ class PayrollEntry(Document):
 			Get loan details from submitted salary slip based on selected criteria
 		"""
 		cond = self.get_filter_condition()
-		return frappe.db.sql(""" select eld.loan_account, eld.loan
+		return frappe.db.sql(""" select eld.loan_account, eld.loan,
 				eld.interest_income_account, eld.principal_amount, eld.interest_amount, eld.total_payment
 			from
 				`tabSalary Slip` t1, `tabSalary Slip Loan` eld
-			where
-				t1.docstatus = 1 and t1.name = eld.parent and start_date >= %s and end_date <= %s %s
+			where  t1.docstatus = 1 and t1.name = eld.parent and start_date >= %s and end_date <= %s %s
 			""" % ('%s', '%s', cond), (self.start_date, self.end_date), as_dict=True) or []
 
 	def get_total_salary_amount(self):

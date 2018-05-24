@@ -102,13 +102,19 @@ def get_result(filters, account_details):
 
 
 def get_gl_entries(filters):
+	
 	currency_map = get_currency(filters)
+	
+#	frappe.throw("%s" % ('Khaled'))
+	
 	select_fields = """, sum(debit_in_account_currency) as debit_in_account_currency,
 		sum(credit_in_account_currency) as credit_in_account_currency""" \
 
 
 	group_by_condition = "group by voucher_type, voucher_no, account, cost_center" \
 		if filters.get("group_by_voucher") else "group by name"
+		
+  	
 
 	gl_entries = frappe.db.sql(
 		"""
@@ -116,14 +122,17 @@ def get_gl_entries(filters):
 			posting_date, account, party_type, party,
 			sum(debit) as debit, sum(credit) as credit,
 			voucher_type, voucher_no, cost_center, project,
-			against_voucher_type, against_voucher, account_currency, code_jour,
+			against_voucher_type, against_voucher, account_currency, code_jour, 
+			(select code_jour from `tabSeries` where name = substring(voucher_no, 1, length(name)) limit 1) as num_jour,
+            (select sum(cast(right(e.name,5) as int))/count(e.name) from `tabGL Entry` e group by e.voucher_no 
+			having e.voucher_no = g.voucher_no) as rank, DENSE_RANK() OVER (ORDER BY rank) as num_piece,
 			remarks, against, is_opening {select_fields}
-		from `tabGL Entry`
+		from `tabGL Entry` g
 		where company=%(company)s {conditions}
 		{group_by_condition}
-		order by posting_date, account
+		order by posting_date, creation, account
 		""".format(
-			select_fields=select_fields, conditions=get_conditions(filters),
+		    select_fields=select_fields, conditions=get_conditions(filters),
 			group_by_condition=group_by_condition
 		),
 		filters, as_dict=1)
@@ -146,6 +155,10 @@ def get_conditions(filters):
 	
 	if filters.get("code_jour"):
 		conditions.append("code_jour=%(code_jour)s")		
+		
+	if filters.get("num_jour"):
+		conditions.append("(select code_jour from `tabSeries` where name = substring(voucher_no, 1, length(name)) limit 1) = %(num_jour)s")
+		
 
 	if filters.get("party_type"):
 		conditions.append("party_type=%(party_type)s")
@@ -322,6 +335,16 @@ def get_columns(filters):
 			"label": _("Code Journal"),
 			"fieldname": "code_jour",
 			"width": 100
+		},	
+		{
+			"label": _("Num Journal"),
+			"fieldname": "num_jour",
+			"width": 100
+		},	
+		{
+			"label": _("Num Piece"),
+			"fieldname": "num_piece",
+			"width": 100
 		},			
 		{
 			"label": _("Account"),
@@ -361,7 +384,7 @@ def get_columns(filters):
 			"fieldname": "voucher_no",
 			"fieldtype": "Dynamic Link",
 			"options": "voucher_type",
-			"width": 180
+			"width": 120
 		},
 		{
 			"label": _("Against Account"),

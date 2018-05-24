@@ -52,7 +52,14 @@ class JournalEntry(AccountsController):
 
 	def get_title(self):
 		return self.pay_to_recd_from or self.accounts[0].account
-
+		
+	def get_journal(self, arg=None):
+		"""get journal"""
+		
+		if self.naming_series:
+			self.code_jour = frappe.db.get_value("Series",
+				self.naming_series, "code_jour", order_by = "name")			
+				
 	def update_advance_paid(self):
 		advance_paid = frappe._dict()
 		for d in self.get("accounts"):

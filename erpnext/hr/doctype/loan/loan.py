@@ -11,6 +11,9 @@ from erpnext.controllers.accounts_controller import AccountsController
 
 class Loan(AccountsController):
 	def validate(self):
+
+#		frappe.throw("This will give the full traceback val")
+		
 		check_repayment_method(self.repayment_method, self.loan_amount, self.monthly_repayment_amount, self.repayment_periods)
 		if not self.company:
 			self.company = erpnext.get_default_company()
@@ -25,7 +28,7 @@ class Loan(AccountsController):
 		if self.status == 'Disbursed' and self.repayment_start_date < self.disbursement_date:
 			frappe.throw(_("Repayment Start Date cannot be before Disbursement Date."))
 
-		if self.status == "Disbursed":
+		if self.status == "Sanctioned":
 			self.make_repayment_schedule()
 			self.set_repayment_period()
 			self.calculate_totals()
@@ -58,6 +61,9 @@ class Loan(AccountsController):
 		return journal_entry.as_dict()
 
 	def make_repayment_schedule(self):
+	
+#		frappe.throw("This will give the full traceback")
+		
 		self.repayment_schedule = []
 		payment_date = self.repayment_start_date
 		balance_amount = self.loan_amount

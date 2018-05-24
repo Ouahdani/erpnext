@@ -8,6 +8,13 @@ frappe.provide("erpnext.journal_entry");
 frappe.ui.form.on("Journal Entry", {
 	refresh: function(frm) {
 		erpnext.toggle_naming_series();
+		frappe.call({
+			method: "get_journal",
+			doc: frm.doc,
+			callback: function(r) {
+				refresh_field("code_jour");
+			}
+		});	
 		frm.cscript.voucher_type(frm.doc);
 
 		if(frm.doc.docstatus==1) {
@@ -67,7 +74,30 @@ frappe.ui.form.on("Journal Entry", {
 				}
 			}
 		});
-	}
+	},
+	
+	naming_series: function(frm) {
+		frappe.call({
+			method: "get_journal",
+			doc: frm.doc,
+			callback: function(r) {
+				refresh_field("code_jour");
+			}
+		});	
+	},
+
+	voucher_type: function(frm) {
+		if (frm.doc.voucher_type == "Opening Entry") {
+			frm.set_value("naming_series", "ANO-");
+		} else {
+			frm.set_value("naming_series", "OD-");
+		}
+		refresh_field("naming_series");
+		frappe.model.clear_table(frm.doc, "accounts");
+		refresh_field("accounts");
+		cur_frm.set_value("is_opening", "No")
+	}		
+	
 });
 
 erpnext.accounts.JournalEntry = frappe.ui.form.Controller.extend({
@@ -258,8 +288,7 @@ erpnext.accounts.JournalEntry = frappe.ui.form.Controller.extend({
 			}
 		}
 		cur_frm.cscript.update_totals(doc);
-	},
-
+	},	
 });
 
 cur_frm.script_manager.make(erpnext.accounts.JournalEntry);
@@ -303,7 +332,7 @@ cur_frm.cscript.voucher_type = function(doc, cdt, cdn) {
 	cur_frm.set_df_property("cheque_date", "reqd", doc.voucher_type=="Bank Entry");
 
 	if(!doc.company) return;
-
+	
 	var update_jv_details = function(doc, r) {
 		$.each(r, function(i, d) {
 			var row = frappe.model.add_child(doc, "Journal Entry Account", "accounts");
@@ -319,14 +348,14 @@ cur_frm.cscript.voucher_type = function(doc, cdt, cdn) {
 				type: "GET",
 				method: "erpnext.accounts.doctype.journal_entry.journal_entry.get_default_bank_cash_account",
 				args: {
-					"account_type": (doc.voucher_type=="Bank Entry" ?
-						"Bank" : (doc.voucher_type=="Cash" ? "Cash" : null)),
+					"account_type": (doc.voucher_type=="Bank Entry" ? "Bank" : (doc.voucher_type=="Cash Entry" ? "Cash" : null)),
 					"company": doc.company
 				},
 				callback: function(r) {
 					if(r.message) {
 						update_jv_details(doc, [r.message]);
 					}
+					cur_frm.set_value("is_opening", "No")
 				}
 			})
 		} else if(doc.voucher_type=="Opening Entry") {
@@ -337,14 +366,14 @@ cur_frm.cscript.voucher_type = function(doc, cdt, cdn) {
 					"company": doc.company
 				},
 				callback: function(r) {
-					frappe.model.clear_table(doc, "accounts");
+
 					if(r.message) {
 						update_jv_details(doc, r.message);
 					}
 					cur_frm.set_value("is_opening", "Yes")
 				}
 			})
-		}
+		} 
 	}
 }
 

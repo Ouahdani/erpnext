@@ -7,6 +7,7 @@ import itertools
 import json
 import erpnext
 import frappe
+
 from erpnext.controllers.item_variant import (ItemVariantExistsError,
         copy_attributes_to_variant, get_variant, make_variant_item_code, validate_item_variant_attributes)
 from erpnext.setup.doctype.item_group.item_group import (get_parent_item_groups, invalidate_cache_for)
@@ -37,10 +38,10 @@ class Item(WebsiteGenerator):
 		template="templates/generators/item.html",
 		no_cache=1
 	)
-
+                                                           
 	def onload(self):
-		super(Item, self).onload()
-
+		super(Item, self).onload()      
+		
 		self.set_onload('stock_exists', self.stock_ledger_created())
 		if self.is_fixed_asset:
 			asset = frappe.db.get_all("Asset", filters={"item_code": self.name, "docstatus": 1}, limit=1)

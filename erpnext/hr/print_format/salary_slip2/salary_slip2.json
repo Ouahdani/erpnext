@@ -1,0 +1,23 @@
+{
+ "align_labels_right": 1,
+ "creation": "2018-05-21 12:30:08.703938",
+ "custom_format": 0,
+ "default_print_language": "en",
+ "disabled": 0,
+ "doc_type": "Salary Slip",
+ "docstatus": 0,
+ "doctype": "Print Format",
+ "font": "Default",
+ "format_data": "[{\"fieldtype\": \"Custom HTML\", \"options\": \"   <h3 style=\\\"text-align: right;\\\"><span style=\\\"line-height: 1.42857;\\\">{{doc.name}}</span></h3>\\n<div>\\n    <hr style=\\\"text-align: center;\\\">\\n</div>   \", \"fieldname\": \"print_heading_template\"}, {\"fieldtype\": \"Section Break\", \"label\": \"\"}, {\"fieldtype\": \"Column Break\"}, {\"print_hide\": 0, \"label\": \"Employee\", \"fieldname\": \"employee\"}, {\"print_hide\": 0, \"label\": \"Company\", \"fieldname\": \"company\"}, {\"print_hide\": 0, \"label\": \"Employee Name\", \"fieldname\": \"employee_name\"}, {\"print_hide\": 0, \"label\": \"Department\", \"fieldname\": \"department\"}, {\"print_hide\": 0, \"label\": \"Designation\", \"fieldname\": \"designation\"}, {\"print_hide\": 0, \"label\": \"Branch\", \"fieldname\": \"branch\"}, {\"fieldtype\": \"Column Break\"}, {\"print_hide\": 0, \"label\": \"Start Date\", \"fieldname\": \"start_date\"}, {\"print_hide\": 0, \"label\": \"End Date\", \"fieldname\": \"end_date\"}, {\"print_hide\": 0, \"label\": \"Working Days\", \"fieldname\": \"total_working_days\"}, {\"print_hide\": 0, \"label\": \"Leave Without Pay\", \"fieldname\": \"leave_without_pay\"}, {\"print_hide\": 0, \"label\": \"Payment Days\", \"fieldname\": \"payment_days\"}, {\"fieldtype\": \"Section Break\", \"label\": \"\"}, {\"fieldtype\": \"Column Break\"}, {\"visible_columns\": [{\"print_width\": \"\", \"print_hide\": 0, \"fieldname\": \"salary_component\"}, {\"print_width\": \"\", \"print_hide\": 0, \"fieldname\": \"amount\"}, {\"print_width\": \"\", \"print_hide\": 0, \"fieldname\": \"depends_on_lwp\"}], \"print_hide\": 0, \"label\": \"Earnings\", \"fieldname\": \"earnings\"}, {\"visible_columns\": [{\"print_width\": \"\", \"print_hide\": 0, \"fieldname\": \"salary_component\"}, {\"print_width\": \"\", \"print_hide\": 0, \"fieldname\": \"amount\"}, {\"print_width\": \"\", \"print_hide\": 0, \"fieldname\": \"depends_on_lwp\"}], \"print_hide\": 0, \"label\": \"Deductions\", \"fieldname\": \"deductions\"}, {\"fieldtype\": \"Section Break\", \"label\": \"\"}, {\"fieldtype\": \"Column Break\"}, {\"fieldtype\": \"Column Break\"}, {\"print_hide\": 0, \"label\": \"Gross Pay\", \"fieldname\": \"gross_pay\"}, {\"print_hide\": 0, \"label\": \"Total Deduction\", \"fieldname\": \"total_deduction\"}, {\"print_hide\": 0, \"label\": \"Net Pay\", \"fieldname\": \"net_pay\"}, {\"print_hide\": 0, \"label\": \"Rounded Total\", \"fieldname\": \"rounded_total\"}, {\"print_hide\": 0, \"label\": \"Total in words\", \"fieldname\": \"total_in_words\"}]",
+ "idx": 0,
+ "line_breaks": 1,
+ "modified": "2018-05-21 12:32:59.454808",
+ "modified_by": "Administrator",
+ "module": "HR",
+ "name": "Salary Slip2",
+ "owner": "Administrator",
+ "print_format_builder": 1,
+ "print_format_type": "Server",
+ "show_section_headings": 1,
+ "standard": "Yes"
+}

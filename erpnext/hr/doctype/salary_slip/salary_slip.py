@@ -51,14 +51,20 @@ class SalarySlip(TransactionBase):
 			self._salary_structure_doc = frappe.get_doc('Salary Structure', self.salary_structure)
 
 		data = self.get_data_for_eval()
+		data2 = self.get_data_for_eval_number()
+		data3 = self.get_data_for_eval_taux()		
 
 		for key in ('earnings', 'deductions'):
 			for struct_row in self._salary_structure_doc.get(key):
 				amount = self.eval_condition_and_formula(struct_row, data)
+				number = self.eval_condition_and_formula_number(struct_row, data2)
+				taux = self.eval_condition_and_formula_taux(struct_row, data3)				
 				if amount and struct_row.statistical_component == 0:
-					self.update_component_row(struct_row, amount, key)
+					self.update_component_row(struct_row, amount, number, taux, key)
 
-	def update_component_row(self, struct_row, amount, key):
+
+
+	def update_component_row(self, struct_row, amount, number, taux, key):
 		component_row = None
 		for d in self.get(key):
 			if d.salary_component == struct_row.salary_component:
@@ -67,6 +73,8 @@ class SalarySlip(TransactionBase):
 		if not component_row:
 			self.append(key, {
 				'amount': amount,
+				'number': number,
+				'taux': taux,				
 				'default_amount': amount,
 				'depends_on_lwp' : struct_row.depends_on_lwp,
 				'salary_component' : struct_row.salary_component,
@@ -100,6 +108,56 @@ class SalarySlip(TransactionBase):
 			frappe.throw(_("Error in formula or condition: {0}".format(e)))
 			raise
 
+	def eval_condition_and_formula_number(self, d, data):
+		try:
+			condition = d.condition.strip() if d.condition else None
+			if condition:
+				if not frappe.safe_eval(condition, None, data):
+					return None
+			number = d.number
+#			if d.amount_based_on_formula:
+			formula = d.number.strip() if d.number else None
+			if formula:
+				number = frappe.safe_eval(formula, None, data)
+			
+			if number:
+				data[d.abbr] = number
+
+			return number
+
+		except NameError as err:
+			frappe.throw(_("Name error: {0}".format(err)))
+		except SyntaxError as err:
+			frappe.throw(_("Syntax error in formula or condition: {0}".format(err)))
+		except Exception as e:
+			frappe.throw(_("Error in formula or condition: {0}".format(e)))
+			raise
+
+	def eval_condition_and_formula_taux(self, d, data):
+		try:
+			condition = d.condition.strip() if d.condition else None
+			if condition:
+				if not frappe.safe_eval(condition, None, data):
+					return None
+			taux = d.taux
+#			if d.amount_based_on_formula:
+			formula = d.taux.strip() if d.taux else None
+			if formula:
+				taux = frappe.safe_eval(formula, None, data)
+			
+			if taux:
+				data[d.abbr] = taux
+
+			return taux
+
+		except NameError as err:
+			frappe.throw(_("Name error: {0}".format(err)))
+		except SyntaxError as err:
+			frappe.throw(_("Syntax error in formula or condition: {0}".format(err)))
+		except Exception as e:
+			frappe.throw(_("Error in formula or condition: {0}".format(e)))
+			raise
+
 	def get_data_for_eval(self):
 		'''Returns data for evaluating formula'''
 		data = frappe._dict()
@@ -121,6 +179,47 @@ class SalarySlip(TransactionBase):
 
 		return data
 
+	def get_data_for_eval_number(self):
+		'''Returns data for evaluating formula'''
+		data = frappe._dict()
+
+		data.update(frappe.get_doc("Salary Structure Employee",
+			{"employee": self.employee, "parent": self.salary_structure}).as_dict())
+
+		data.update(frappe.get_doc("Employee", self.employee).as_dict())
+		data.update(self.as_dict())
+
+		# set values for components
+		salary_components = frappe.get_all("Salary Component", fields=["salary_component_abbr"])
+		for sc in salary_components:
+			data.setdefault(sc.salary_component_abbr, 0)
+
+		for key in ('earnings', 'deductions'):
+			for d in self.get(key):
+				data[d.abbr] = d.number
+
+		return data		
+
+	def get_data_for_eval_taux(self):
+		'''Returns data for evaluating formula'''
+		data = frappe._dict()
+
+		data.update(frappe.get_doc("Salary Structure Employee",
+			{"employee": self.employee, "parent": self.salary_structure}).as_dict())
+
+		data.update(frappe.get_doc("Employee", self.employee).as_dict())
+		data.update(self.as_dict())
+
+		# set values for components
+		salary_components = frappe.get_all("Salary Component", fields=["salary_component_abbr"])
+		for sc in salary_components:
+			data.setdefault(sc.salary_component_abbr, 0)
+
+		for key in ('earnings', 'deductions'):
+			for d in self.get(key):
+				data[d.abbr] = d.taux
+
+		return data		
 
 	def get_emp_and_leave_details(self):
 		'''First time, load all the components from salary structure'''

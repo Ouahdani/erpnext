@@ -68,6 +68,16 @@ frappe.query_reports["GL2"] = {
 			}
 		},		
 		{
+			"fieldname":"num_jour",
+			"label": __("Numero Journal"),
+			"fieldtype": "Link",
+			"options": "Journaux",
+			"default": "",
+			on_change: function() {
+				frappe.query_report_filters_by_name.party.set_value("");
+			}
+		},		
+		{
 			"fieldname":"party_type",
 			"label": __("Party Type"),
 			"fieldtype": "Link",
